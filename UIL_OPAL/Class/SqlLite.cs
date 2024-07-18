@@ -93,7 +93,7 @@ namespace UIL_OPAL
             catch (Exception ex)
             {
                 Global.WriteLog($"Error can not create table, index - error: {ex.Message}");
-                MessageBox.Show($"Error can not create table, index - error: {ex.Message}");
+                Global.ShowError($"Error can not create table, index - error: {ex.Message}");
             }
         }
 
