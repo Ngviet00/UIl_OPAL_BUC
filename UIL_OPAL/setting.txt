@@ -1,0 +1,7 @@
+﻿OK= 0
+NG= 0
+Is_Check_NAS= 1
+DiskLocal= D:\mes_automaination_svc
+DiskNetwork= G:\
+Auto_Delete_CSV= 0
+Day_Delete_CSV= 90
