@@ -138,23 +138,43 @@ namespace UIL_OPAL
         public void UpdateLineChart()
         {
             Dictionary<string, string> rs = SqlLite.Instance.GetDataLineChart();
-            List<double> value = new List<Double>();
+            List<double> value = new List<double>();
             List<string> days = new List<string>();
 
-            if (rs != null)
+            try
             {
-                if (rs.Count > 0)
+                if (rs != null && rs.Count > 0)
                 {
                     foreach (KeyValuePair<string, string> item in rs)
                     {
                         days.Add(item.Key);
                         value.Add(Convert.ToDouble(item.Value));
                     }
-
-                    lineChart.Mc1data = value;
-                    lineChart.Days = days;
-                    lineChart.UpdateChart();
                 }
+                else
+                {
+                    for (int i = 1; i <= 7; i++)
+                    {
+                        days.Add($"0{i}-01-1970");
+                        value.Add(0);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Global.WriteLog($"Error can not get data line chart, error: {ex.Message}");
+                
+                for (int i = 1; i <= 7; i++)
+                {
+                    days.Add($"0{i}-01-1970");
+                    value.Add(0);
+                }
+            }
+            finally
+            {
+                lineChart.Mc1data = value;
+                lineChart.Days = days;
+                lineChart.UpdateChart();
             }
         }
 
