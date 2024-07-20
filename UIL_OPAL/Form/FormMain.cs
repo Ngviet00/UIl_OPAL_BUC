@@ -141,17 +141,20 @@ namespace UIL_OPAL
             List<double> value = new List<Double>();
             List<string> days = new List<string>();
 
-            if (rs.Count > 0)
+            if (rs != null)
             {
-                foreach (KeyValuePair<string, string> item in rs)
+                if (rs.Count > 0)
                 {
-                    days.Add(item.Key);
-                    value.Add(Convert.ToDouble(item.Value));
-                }
+                    foreach (KeyValuePair<string, string> item in rs)
+                    {
+                        days.Add(item.Key);
+                        value.Add(Convert.ToDouble(item.Value));
+                    }
 
-                lineChart.Mc1data = value;
-                lineChart.Days = days;
-                lineChart.UpdateChart();
+                    lineChart.Mc1data = value;
+                    lineChart.Days = days;
+                    lineChart.UpdateChart();
+                }
             }
         }
 

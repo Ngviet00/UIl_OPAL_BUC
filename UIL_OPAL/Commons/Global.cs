@@ -115,7 +115,7 @@ namespace UIL_OPAL
         {
             lock (lockCSV)
             {
-                string fileNameCSV = !string.IsNullOrWhiteSpace(rs.BucCoverQR) ? rs.BucCoverQR.Trim() + ".csv" : "Machine_testing" + ".csv";
+                string fileNameCSV = "VNATHSSEM240701-" + (!string.IsNullOrWhiteSpace(rs.BucCoverQR) ? rs.BucCoverQR.Trim() : "Machine_testing") + ".csv";
 
                 //check if NAS not exist
                 if (!Directory.Exists(directoryPath) && type == 2)
