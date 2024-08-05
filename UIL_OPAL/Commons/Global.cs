@@ -111,7 +111,7 @@ namespace UIL_OPAL
             }
         }
 
-        public static void SaveCSV(Result rs, string directoryPath, int type) //1 local, 2 NAS
+        public static void SaveCSV(Result rs, string directoryPath, int type, int finalResult) //1 local, 2 NAS
         {
             lock (lockCSV)
             {
@@ -136,7 +136,7 @@ namespace UIL_OPAL
                         csv.WriteHeader<Result>();
                         csv.NextRecord();
 
-                        if (rs.Rs == "1")
+                        if (finalResult == 1)
                         {
                             rs.Rs = "OK";
                         }

@@ -402,13 +402,15 @@ namespace UIL_OPAL
                 short[] resultVision = Global.plc.ReadWord(type == 1 ? "W38D" : "W48D", 1);
                 short[] result = Global.plc.ReadWord(type == 1 ? "W39B" : "W49B", 1);
 
+                int finalResult = 0;
+
                 if (resultVision[0] == 1 && result[0] == 1)
                 {
-                    rs.Rs = "1";
+                    finalResult = 1;
                 }
                 else
                 {
-                    rs.Rs = "2";
+                    finalResult = 2;
                 }
 
                 int[] positions = Global.plc.ReadDWord(type == 1 ? "W360" : "W460", 12);
@@ -432,11 +434,11 @@ namespace UIL_OPAL
                 rs.Date = dt.ToString("yyyy/MM/dd");
                 rs.Time = dt.ToString("HH:mm:ss");
 
-                AddRow(rs);
+                AddRow(rs, finalResult);
 
                 //ShowLog($"--- event {type}, result vision: {resultVision[0]}, result plc: {result[0]}, result final: {rs.Rs}", true);
 
-                if (rs.Rs == "1")
+                if (finalResult == 1)
                 {
                     lock (LockThreadReadData)
                     {
@@ -466,11 +468,11 @@ namespace UIL_OPAL
                 {
                     Global.SaveExcel(rs);
 
-                    Global.SaveCSV(rs, Global.DiskLocal, 1);
+                    Global.SaveCSV(rs, Global.DiskLocal, 1, finalResult);
 
                     if (Global.IsCheckNAS == 1)
                     {
-                        Global.SaveCSV(rs, Global.DiskNetwork, 2);
+                        Global.SaveCSV(rs, Global.DiskNetwork, 2, finalResult);
                     }
 
                     string content = JsonConvert.SerializeObject(FormatDataSaveSqlite(rs));
@@ -532,7 +534,7 @@ namespace UIL_OPAL
 
         int numberRowDGV = 0;
 
-        public void AddRow(Result rs)
+        public void AddRow(Result rs, int finalResult)
         {
             Action action = () =>
             {
@@ -555,7 +557,7 @@ namespace UIL_OPAL
                     dataGridView1.Refresh();
                 }
 
-                dataGridView1.Rows.Insert(0, new string[] { numberRowDGV.ToString(), rs.BucCoverQR, rs.BacketBarCode, rs.BendingDistanceValue.ToString(), rs.PressureTime.ToString(), rs.Rs == "1" ? "OK" : "NG",
+                dataGridView1.Rows.Insert(0, new string[] { numberRowDGV.ToString(), rs.BucCoverQR, rs.BacketBarCode, rs.BendingDistanceValue.ToString(), rs.PressureTime.ToString(), finalResult == 1 ? "OK" : "NG",
                     rs.Temp1.ToString(), rs.Temp2.ToString(), rs.Temp3.ToString(), rs.Temp4.ToString(), 
                     upPoint.ToString(), leftPoint.ToString(), rightPoint.ToString(), downPoint.ToString(), 
                     DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:ff") });
