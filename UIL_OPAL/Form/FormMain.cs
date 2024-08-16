@@ -78,7 +78,7 @@ namespace UIL_OPAL
                     string pathExcel = Global.DiskLocal;
                     DeleteExcel(pathExcel, now, Global.DayDeleteCSV);
                 }
-                ShowLog("Auto delete file running!");
+                Global.WriteLog("Auto delete file is running!");
                 await Task.Delay(TimeSpan.FromHours(5));
             }
         }
@@ -470,10 +470,10 @@ namespace UIL_OPAL
 
                     Global.SaveCSV(rs, Global.DiskLocal, 1, finalResult);
 
-                    if (Global.IsCheckNAS == 1)
-                    {
-                        Global.SaveCSV(rs, Global.DiskNetwork, 2, finalResult);
-                    }
+                    //if (Global.IsCheckNAS == 1)
+                    //{
+                    //    Global.SaveCSV(rs, Global.DiskNetwork, 2, finalResult);
+                    //}
 
                     string content = JsonConvert.SerializeObject(FormatDataSaveSqlite(rs));
                     SqlLite.Instance.Insert(string.IsNullOrWhiteSpace(bucCoverQR) ? $"Empty_{type}" : bucCoverQR, content, Global.GetCurrentTimeStampUTC7());

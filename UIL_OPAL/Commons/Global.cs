@@ -34,7 +34,7 @@ namespace UIL_OPAL
 
         public static int NG = 0;
 
-        public static int IsCheckNAS = 0;
+        public static int IsCheckNAS = 1;
 
         public static string DiskLocal = @"D:\MES_AUTOMAINATION_SVC";
         
@@ -125,12 +125,13 @@ namespace UIL_OPAL
                     return;
                 }
 
+                //folder local
                 string filePath = Path.Combine(directoryPath, fileNameCSV);
-                fileNameCSV = GetUniqueFilePath(filePath);
+                string fileNameCSVLocal = GetUniqueFilePath(filePath);
 
                 try
                 {
-                    using (var writer = new StreamWriter(fileNameCSV))
+                    using (var writer = new StreamWriter(fileNameCSVLocal))
                     using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
                     {
                         csv.WriteHeader<Result>();
@@ -146,6 +147,25 @@ namespace UIL_OPAL
                         }
 
                         csv.WriteRecord(rs);
+                        writer.Flush();
+                    }
+
+                    //copy file to folder NAS if check save to NAS
+                    try
+                    {
+                        if (Global.IsCheckNAS == 1)
+                        {
+                            //folder NAS
+                            string fileNameCSVFolderNAS = Path.Combine(Global.DiskNetwork, fileNameCSV);
+                            fileNameCSVFolderNAS = GetUniqueFilePath(fileNameCSVFolderNAS);
+
+                            File.Copy(fileNameCSVLocal, fileNameCSVFolderNAS, true);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Global.WriteLog($"Can not save to file CSV folder NAS: {ex.Message}");
+                        Global.ShowError($"Can not save to file CSV folder NAS: {ex.Message}");
                     }
                 }
                 catch (Exception ex)
