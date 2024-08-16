@@ -390,7 +390,7 @@ namespace UIL_OPAL
                 rs.BendingDistanceValue = bendingDistance.Length == 0 ? 0 : (double)bendingDistance[0]/1000;
 
                 short[] pressureTime = Global.plc.ReadWord(type == 1 ? "W330" : "W430", 1);
-                rs.PressureTime = pressureTime.Length == 0 ? 0 : pressureTime[0];
+                rs.PressureTime = pressureTime.Length == 0 ? 0 : (double)pressureTime[0]/10;
 
                 short[] temps = Global.plc.ReadWord(type == 1 ? "W338" : "W438", 4);
 
@@ -436,8 +436,6 @@ namespace UIL_OPAL
 
                 AddRow(rs, finalResult);
 
-                //ShowLog($"--- event {type}, result vision: {resultVision[0]}, result plc: {result[0]}, result final: {rs.Rs}", true);
-
                 if (finalResult == 1)
                 {
                     lock (LockThreadReadData)
@@ -469,11 +467,6 @@ namespace UIL_OPAL
                     Global.SaveExcel(rs);
 
                     Global.SaveCSV(rs, Global.DiskLocal, 1, finalResult);
-
-                    //if (Global.IsCheckNAS == 1)
-                    //{
-                    //    Global.SaveCSV(rs, Global.DiskNetwork, 2, finalResult);
-                    //}
 
                     string content = JsonConvert.SerializeObject(FormatDataSaveSqlite(rs));
                     SqlLite.Instance.Insert(string.IsNullOrWhiteSpace(bucCoverQR) ? $"Empty_{type}" : bucCoverQR, content, Global.GetCurrentTimeStampUTC7());

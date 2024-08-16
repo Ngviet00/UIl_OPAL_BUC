@@ -117,6 +117,12 @@ namespace UIL_OPAL
             {
                 string fileNameCSV = "VNATHSSEM240701-" + (!string.IsNullOrWhiteSpace(rs.BucCoverQR) ? rs.BucCoverQR.Trim() : "Machine_testing") + ".csv";
 
+                //check have folder and type = 1 is local
+                if (!Directory.Exists(directoryPath) && type == 1)
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
                 //check if NAS not exist
                 if (!Directory.Exists(directoryPath) && type == 2)
                 {

@@ -7,7 +7,7 @@ namespace UIL_OPAL
         public string BucCoverQR { get; set; } = string.Empty;
         public string BacketBarCode { get; set; } = string.Empty;
         public double BendingDistanceValue { get; set; } = 0;
-        public int PressureTime { get; set; } = 0;
+        public double PressureTime { get; set; } = 0;
         public short Temp1 { get; set; } = 0;
         public short Temp2 { get; set; } = 0;
         public short Temp3 { get; set; } = 0;
