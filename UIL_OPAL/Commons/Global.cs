@@ -117,6 +117,8 @@ namespace UIL_OPAL
             {
                 string fileNameCSV = "VNATHSSEM240701-" + (!string.IsNullOrWhiteSpace(rs.BucCoverQR) ? rs.BucCoverQR.Trim() : "Machine_testing") + ".csv";
 
+                directoryPath = Path.Combine(directoryPath, DateTime.Now.ToString("yyyy"), DateTime.Now.ToString("MM"), DateTime.Now.ToString("dd"));
+
                 //check have folder and type = 1 is local
                 if (!Directory.Exists(directoryPath) && type == 1)
                 {
@@ -190,13 +192,15 @@ namespace UIL_OPAL
             {
                 try
                 {
-                    if (!Directory.Exists(Global.DiskLocal))
+                    string folderExcel = Path.Combine(Global.DiskLocal, DateTime.Now.ToString("yyyy"), DateTime.Now.ToString("MM"), DateTime.Now.ToString("dd"));
+
+                    if (!Directory.Exists(folderExcel))
                     {
-                        Directory.CreateDirectory(Global.DiskLocal);
+                        Directory.CreateDirectory(folderExcel);
                     }
 
                     string fileName = $"{dateString}.xlsx";
-                    string filePath = Path.Combine(Global.DiskLocal, fileName);
+                    string filePath = Path.Combine(folderExcel, fileName);
 
                     using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
                     {
