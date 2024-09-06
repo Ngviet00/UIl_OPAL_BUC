@@ -394,10 +394,10 @@ namespace UIL_OPAL
 
                 short[] temps = Global.plc.ReadWord(type == 1 ? "W338" : "W438", 4);
 
-                rs.Temp1 = temps[0];
+                rs.Temp3 = temps[0];
                 rs.Temp2 = temps[1];
-                rs.Temp3 = temps[2];
-                rs.Temp4 = temps[3];
+                rs.Temp4 = temps[2];
+                rs.Temp1 = temps[3];
 
                 short[] resultVision = Global.plc.ReadWord(type == 1 ? "W38D" : "W48D", 1);
                 short[] result = Global.plc.ReadWord(type == 1 ? "W39B" : "W49B", 1);
