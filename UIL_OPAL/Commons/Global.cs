@@ -97,7 +97,7 @@ namespace UIL_OPAL
                 while (File.Exists(filePath))
                 {
                     string newFileName = string.Empty;
-                    newFileName = count == 1 ? $"{fileNameWithoutExtension}_d{extension}" : $"{fileNameWithoutExtension}_d{count}{extension}";
+                    newFileName = count == 1 ? $"{fileNameWithoutExtension}_d{extension}" : $"{fileNameWithoutExtension}_d_{DateTime.Now.ToString("yyyyMMddHHmmssff")}{extension}";
                     filePath = Path.Combine(directory, newFileName);
                     count++;
                 }
