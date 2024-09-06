@@ -464,7 +464,7 @@ namespace UIL_OPAL
                 //if QR not null and content QR is different "20240630_1234567_UIL"
                 if (!string.IsNullOrWhiteSpace(rs.BucCoverQR) && rs.BucCoverQR != "20240630_1234567_UIL")
                 {
-                    Global.SaveExcel(rs);
+                    Global.SaveExcel(rs, finalResult);
 
                     Global.SaveCSV(rs, Global.DiskLocal, 1, finalResult);
 
@@ -498,14 +498,14 @@ namespace UIL_OPAL
 
         public string[] FormatDataSaveSqlite(Result rs)
         {
-            rs.Rs = rs.Rs == "1" ? "OK" : "NG";
+            rs.Results = rs.Results == "1" ? "OK" : "NG";
 
             return new string[]
             {
                 rs.BacketBarCode, 
                 rs.BendingDistanceValue.ToString(),
                 rs.PressureTime.ToString(),
-                rs.Rs.ToString(),
+                rs.Results.ToString(),
                 rs.Temp1.ToString(),
                 rs.Temp2.ToString(),
                 rs.Temp3.ToString(),

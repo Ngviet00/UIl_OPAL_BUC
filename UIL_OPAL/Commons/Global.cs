@@ -147,11 +147,11 @@ namespace UIL_OPAL
 
                         if (finalResult == 1)
                         {
-                            rs.Rs = "OK";
+                            rs.Results = "OK";
                         }
                         else
                         {
-                            rs.Rs = "NG";
+                            rs.Results = "NG";
                         }
 
                         csv.WriteRecord(rs);
@@ -184,7 +184,7 @@ namespace UIL_OPAL
             }
         }
 
-        public static void SaveExcel(Result rs)
+        public static void SaveExcel(Result rs, int finalResult)
         {
             string dateString = DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -256,8 +256,10 @@ namespace UIL_OPAL
                             worksheet.Cells[1, 19].Value = "Y4";
                             worksheet.Cells[1, 20].Value = "Z4";
 
-                            worksheet.Cells[1, 21].Value = "생산일자";
-                            worksheet.Cells[1, 22].Value = "생산시간";
+                            worksheet.Cells[1, 21].Value = "Result";
+
+                            worksheet.Cells[1, 22].Value = "생산일자";
+                            worksheet.Cells[1, 23].Value = "생산시간";
                         }
 
                         if (row == 1)
@@ -291,8 +293,10 @@ namespace UIL_OPAL
                         worksheet.Cells[row, 19].Value = rs.Y4.ToString() + "mm";
                         worksheet.Cells[row, 20].Value = rs.Z4.ToString() + "mm";
 
-                        worksheet.Cells[row, 21].Value = rs.Date;
-                        worksheet.Cells[row, 22].Value = rs.Time;
+                        worksheet.Cells[row, 21].Value = finalResult == 1 ? "OK" : "NG";
+
+                        worksheet.Cells[row, 22].Value = rs.Date;
+                        worksheet.Cells[row, 23].Value = rs.Time;
 
                         FileInfo fileInfo = new FileInfo(filePath);
                         package.SaveAs(fileInfo);

@@ -24,7 +24,7 @@ namespace UIL_OPAL
         public double X4 { get; set; } = 0;
         public double Y4 { get; set; } = 0;
         public double Z4 { get; set; } = 0;
-        public string Rs { get; set; } = "1";
+        public string Results { get; set; } = "1";
         public string Date { get; set; } = DateTime.Now.ToString("yyyy/MM/dd");
         public string Time { get; set; } = DateTime.Now.ToString("HH:mm:ss");
     }
