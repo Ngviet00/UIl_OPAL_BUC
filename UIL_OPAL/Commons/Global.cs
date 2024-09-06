@@ -210,14 +210,14 @@ namespace UIL_OPAL
 
                         if (row == 1)
                         {
-                            worksheet.Cells["A1:V1"].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            worksheet.Cells["A1:V1"].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                            worksheet.Cells["A1:W1"].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells["A1:W1"].Style.Fill.BackgroundColor.SetColor(Color.LightGray);
 
                             worksheet.Cells["A1:B1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             worksheet.Cells["A1:B1"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
-                            worksheet.Cells["C1:V1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
-                            worksheet.Cells["C1:V1"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                            worksheet.Cells["C1:W1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                            worksheet.Cells["C1:W1"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
                             worksheet.Cells["A1:B1"].Style.WrapText = true;
 
