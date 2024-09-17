@@ -173,7 +173,7 @@ namespace UIL_OPAL
                     catch (Exception ex)
                     {
                         Global.WriteLog($"Can not save to file CSV folder NAS: {ex.Message}");
-                        Global.ShowError($"Can not save to file CSV folder NAS: {ex.Message}");
+                        //Global.ShowError($"Can not save to file CSV folder NAS: {ex.Message}");
                     }
                 }
                 catch (Exception ex)
