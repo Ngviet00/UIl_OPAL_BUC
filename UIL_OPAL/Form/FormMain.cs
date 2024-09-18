@@ -415,21 +415,21 @@ namespace UIL_OPAL
 
                 int[] positions = Global.plc.ReadDWord(type == 1 ? "W360" : "W460", 12);
 
-                rs.X1 = (double)positions[0]/1000;
-                rs.Y1 = (double)positions[1]/1000;
-                rs.Z1 = (double)positions[2]/1000;
+                rs.X1 = (double)positions[6] / 1000;
+                rs.Y1 = (double)positions[7] / 1000;
+                rs.Z1 = (double)positions[8] / 1000;
 
-                rs.X2 = (double)positions[3]/1000;
-                rs.Y2 = (double)positions[4]/1000;
-                rs.Z2 = (double)positions[5]/1000;
+                rs.X2 = (double)positions[0] / 1000;
+                rs.Y2 = (double)positions[1] / 1000;
+                rs.Z2 = (double)positions[2] / 1000;
 
-                rs.X3 = (double)positions[6]/1000;
-                rs.Y3 = (double)positions[7]/1000;
-                rs.Z3 = (double)positions[8]/1000;
+                rs.X3 = (double)positions[9] / 1000;
+                rs.Y3 = (double)positions[10] / 1000;
+                rs.Z3 = (double)positions[11] / 1000;
 
-                rs.X4 = (double)positions[9]/1000;
-                rs.Y4 = (double)positions[10]/1000;
-                rs.Z4 = (double)positions[11]/1000;
+                rs.X4 = (double)positions[3] / 1000;
+                rs.Y4 = (double)positions[4] / 1000;
+                rs.Z4 = (double)positions[5] / 1000;
 
                 rs.Date = dt.ToString("yyyy/MM/dd");
                 rs.Time = dt.ToString("HH:mm:ss");
