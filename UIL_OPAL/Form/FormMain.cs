@@ -539,7 +539,7 @@ namespace UIL_OPAL
                 upPoint.Append(rs.X1).Append(", ").Append(rs.Y1).Append(", ").Append(rs.Z1);
                 leftPoint.Append(rs.X2).Append(", ").Append(rs.Y2).Append(", ").Append(rs.Z2);
                 rightPoint.Append(rs.X4).Append(", ").Append(rs.Y4).Append(", ").Append(rs.Z4);
-                downPoint.Append(rs.X3).Append(", ").Append(rs.Y3);
+                downPoint.Append(rs.X3).Append(", ").Append(rs.Y3).Append(", ").Append(rs.Z3);
 
                 numberRowDGV += 1;
 
