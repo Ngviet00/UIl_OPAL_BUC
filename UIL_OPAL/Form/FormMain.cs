@@ -411,6 +411,7 @@ namespace UIL_OPAL
                 else
                 {
                     finalResult = 2;
+                    rs.BacketBarCode = string.Empty;
                 }
 
                 int[] positions = Global.plc.ReadDWord(type == 1 ? "W360" : "W460", 12);
