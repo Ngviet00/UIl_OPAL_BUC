@@ -70,20 +70,33 @@ namespace UIL_OPAL
 
         private async Task ThreadAutoDeleteOldFile()
         {
-            while (true)
+            try
             {
-                if (Global.AutoDeleteCSV == 1)
+                while (true)
                 {
                     DateTime now = DateTime.Now;
                     string pathExcel = Global.DiskLocal;
-                    DeleteExcel(pathExcel, now, Global.DayDeleteCSV);
+
+                    if (Global.AutoDeleteCSV == 1)
+                    {
+                        DeleteOldFile(pathExcel, now, Global.DayDeleteCSV);
+                    }
+
+                    now = DateTime.Now;
+                    DeleteOldFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"), now, 60);
+
+                    Global.WriteLog("Auto delete file is running!");
+                    await Task.Delay(TimeSpan.FromHours(5));
                 }
-                Global.WriteLog("Auto delete file is running!");
+            }
+            catch (Exception ex)
+            {
+                Global.WriteLog($"Error can not excute function delete old file!, error: {ex.Message}");
                 await Task.Delay(TimeSpan.FromHours(5));
             }
         }
 
-        private void DeleteExcel(string path, DateTime now, int dayDelete)
+        private void DeleteOldFile(string path, DateTime now, int dayDelete)
         {
             if (!Directory.Exists(path))
             {
@@ -109,7 +122,7 @@ namespace UIL_OPAL
                         }
                         catch (Exception ex)
                         {
-                            ShowLog($"Error can not delete file, error: {ex.Message}", true);
+                            //ShowLog($"Error can not delete file, error: {ex.Message}", true);
                             Global.WriteLog($"Error can not delete file, error: {ex.Message}");
                         }
                     }
@@ -122,7 +135,7 @@ namespace UIL_OPAL
 
             foreach (var directory in directories)
             {
-                DeleteExcel(directory, now, dayDelete);
+                DeleteOldFile(directory, now, dayDelete);
             }
         }
 

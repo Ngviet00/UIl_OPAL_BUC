@@ -62,7 +62,7 @@ namespace UIL_OPAL
         {
             lock (lockFileLog)
             {
-                string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+                string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs", DateTime.Now.ToString("yyyy"), DateTime.Now.ToString("MM"));
 
                 string logFormat = DateTime.Now.ToLongDateString().ToString() + " - " + DateTime.Now.ToLongTimeString().ToString() + " ==> ";
 
@@ -73,14 +73,14 @@ namespace UIL_OPAL
 
                 try
                 {
-                    using (StreamWriter writer = File.AppendText(logPath + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"))
+                    using (StreamWriter writer = File.AppendText(logPath + "\\" + DateTime.Now.ToString("dd") + ".txt"))
                     {
                         writer.WriteLine(logFormat + msg);
                     }
                 }
                 catch (Exception ex)
                 {
-                    Global.ShowError($"Error can not save to file log, error: {ex.Message}");
+                    Console.WriteLine($"Error can not write log, error: {ex.Message}");
                 }
             }
         }
