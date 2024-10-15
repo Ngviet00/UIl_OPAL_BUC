@@ -629,6 +629,7 @@ namespace UIL_OPAL
         {
             Action action = () =>
             {
+                numberRowDGV = 0;
                 Global.OK = 0;
                 Global.NG = 0;
                 UpdateData(Global.NG, Global.OK);
