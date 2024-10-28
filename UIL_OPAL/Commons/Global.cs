@@ -36,7 +36,7 @@ namespace UIL_OPAL
 
         public static int IsCheckNAS = 1;
 
-        public static string DiskLocal = @"D:\MES_AUTOMAINATION_SVC";
+        public static string DiskLocal = @"D:\mes_automaination_svc";
         
         public static string DiskNetwork = @"G:\";
 
@@ -240,21 +240,21 @@ namespace UIL_OPAL
                             worksheet.Cells[1, 7].Value = "Temp 3";
                             worksheet.Cells[1, 8].Value = "Temp 4";
 
-                            worksheet.Cells[1, 9].Value = "X1";
-                            worksheet.Cells[1, 10].Value = "Y1";
-                            worksheet.Cells[1, 11].Value = "Z1";
+                            worksheet.Cells[1, 9].Value = "U1";
+                            worksheet.Cells[1, 10].Value = "U2";
+                            worksheet.Cells[1, 11].Value = "U3";
 
-                            worksheet.Cells[1, 12].Value = "X2";
-                            worksheet.Cells[1, 13].Value = "Y2";
-                            worksheet.Cells[1, 14].Value = "Z2";
+                            worksheet.Cells[1, 12].Value = "L1";
+                            worksheet.Cells[1, 13].Value = "L2";
+                            worksheet.Cells[1, 14].Value = "L3";
 
-                            worksheet.Cells[1, 15].Value = "X3";
-                            worksheet.Cells[1, 16].Value = "Y3";
-                            worksheet.Cells[1, 17].Value = "Z3";
+                            worksheet.Cells[1, 15].Value = "D1";
+                            worksheet.Cells[1, 16].Value = "D2";
+                            worksheet.Cells[1, 17].Value = "D3";
 
-                            worksheet.Cells[1, 18].Value = "X4";
-                            worksheet.Cells[1, 19].Value = "Y4";
-                            worksheet.Cells[1, 20].Value = "Z4";
+                            worksheet.Cells[1, 18].Value = "R1";
+                            worksheet.Cells[1, 19].Value = "R2";
+                            worksheet.Cells[1, 20].Value = "R3";
 
                             worksheet.Cells[1, 21].Value = "Result";
 
